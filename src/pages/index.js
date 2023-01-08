@@ -17,33 +17,30 @@ const IndexPage = () => {
     var current_section
     var position
     var destination
-    var delay
     var scrolling_timer
 
     function wheel(event) {
         if(Math.abs(event.deltaY) > 30) {
-            if(!delay) {
-                if(event.deltaY < 0) {
-                    current_section--
-                } else if(event.deltaY > 0) {
-                    current_section++
-                }
-
-                if(current_section < 0) {
-                    current_section = sections.length - 1
-                } else if(current_section > sections.length - 1) {
-                    current_section = 0
-                }
-
-                destination = ((window.innerHeight - sections[current_section].offsetHeight) / 2 - sections[current_section].offsetTop)
+            if(event.deltaY < 0) {
+                current_section--
+            } else if(event.deltaY > 0) {
+                current_section++
             }
 
-            delay = true;
+            if(current_section < 0) {
+                current_section = sections.length - 1
+            } else if(current_section > sections.length - 1) {
+                current_section = 0
+            }
+
+            destination = ((window.innerHeight - sections[current_section].offsetHeight) / 2 - sections[current_section].offsetTop)
+
+            window.removeEventListener("wheel", wheel)
             
             setTimeout(function() {
-                delay = false;
+                window.addEventListener("wheel", wheel)
             }, 500);
-        } else if(!delay) {
+        } else {
             destination = position - event.deltaY
         }
 
