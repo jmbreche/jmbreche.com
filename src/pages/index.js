@@ -40,7 +40,7 @@ const IndexPage = () => {
             
             setTimeout(function() {
                 window.addEventListener("wheel", wheel)
-            }, 500);
+            }, 400);
         } else {
             destination = position - event.deltaY
         }
@@ -56,7 +56,7 @@ const IndexPage = () => {
     
             current_section = proximities.indexOf(Math.min(...proximities))
             destination = ((window.innerHeight - sections[current_section].offsetHeight) / 2 - sections[current_section].offsetTop)
-        }, 490)
+        }, 350)
     }
 
     function update() {
