@@ -52,14 +52,10 @@ const IndexPage = () => {
             for(let el of sections) {
                 proximities.push(Math.abs(((window.innerHeight - el.offsetHeight) / 2 - el.offsetTop) - position))
             }
-
-            let distance = Math.min(...proximities)
-        
-            if(distance > 250) {
-                current_section = proximities.indexOf(distance)
-                destination = ((window.innerHeight - sections[current_section].offsetHeight) / 2 - sections[current_section].offsetTop)
-            }
-        }, 250)
+    
+            current_section = proximities.indexOf(Math.min(...proximities))
+            destination = ((window.innerHeight - sections[current_section].offsetHeight) / 2 - sections[current_section].offsetTop)
+        }, 750)
     }
 
     function update() {
