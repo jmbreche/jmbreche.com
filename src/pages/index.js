@@ -47,6 +47,17 @@ const IndexPage = () => {
         }
     }
 
+    function touchend() {
+        let proximities = []
+
+        for(let el of sections) {
+            proximities.push(Math.abs(((window.innerHeight - sections[current_section].offsetHeight) / 2 - sections[current_section].offsetTop) - position))
+        }
+
+        current_section = proximities.indexOf(Math.min(...proximities))
+        destination = ((window.innerHeight - sections[current_section].offsetHeight) / 2 - sections[current_section].offsetTop)
+    }
+
     function update() {
         let speed = Math.abs(position - destination) / 3
 
@@ -71,11 +82,13 @@ const IndexPage = () => {
         document.getElementsByTagName("body")[0].style.top = position + "px"
 
         window.addEventListener("wheel", wheel)
+        window.addEventListener("touchend", touchend)
 
         update()
 
         return () => {
           window.removeEventListener("wheel", wheel)
+          window.removeEventListener("touchend", touchend)
         }
     }, [])
 
