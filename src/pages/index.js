@@ -73,12 +73,11 @@ const IndexPage = () => {
     }
 
     React.useEffect(() => {
-        position = (window.innerHeight - document.getElementById("banner").offsetHeight) / 2
-        destination = position
         sections = document.getElementsByTagName("main")[0].children
-        current_section = 0
 
-        document.getElementsByTagName("body")[0].style.top = position + "px"
+        position = 0
+        destination = 0
+        current_section = 0
 
         window.addEventListener("wheel", wheel)
 
