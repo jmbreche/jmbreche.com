@@ -20,27 +20,29 @@ const IndexPage = () => {
     var delay
 
     function wheel(event) {
-        if(!delay) {
-            if(event.deltaY < 0) {
-                current_section--
-            } else if(event.deltaY > 0) {
-                current_section++
+        if(Math.abs(event.deltaY) > 50) {
+            if(!delay) {
+                if(event.deltaY < 0) {
+                    current_section--
+                } else if(event.deltaY > 0) {
+                    current_section++
+                }
+
+                if(current_section < 0) {
+                    current_section = sections.length - 1
+                } else if(current_section > sections.length - 1) {
+                    current_section = 0
+                }
+
+                destination = ((window.innerHeight - sections[current_section].offsetHeight) / 2 - sections[current_section].offsetTop)
             }
 
-            if(current_section < 0) {
-                current_section = sections.length - 1
-            } else if(current_section > sections.length - 1) {
-                current_section = 0
-            }
-
-            destination = ((window.innerHeight - sections[current_section].offsetHeight) / 2 - sections[current_section].offsetTop)
+            delay = true;
+            
+            setTimeout(function() {
+                delay = false;
+            }, 500);
         }
-
-        delay = true;
-        
-        setTimeout(function() {
-            delay = false;
-        }, 2000);
     }
 
     function update() {
