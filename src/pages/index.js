@@ -57,6 +57,7 @@ const IndexPage = () => {
             }
     
             current_section = proximities.indexOf(Math.min(...proximities))
+            destination = ((window.innerHeight - sections[current_section].offsetHeight) / 2 - sections[current_section].offsetTop)
 
             console.log("User hasn't scrolled in 250 milliseconds")
         }, 250)
