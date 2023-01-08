@@ -42,7 +42,7 @@ const IndexPage = () => {
             
             setTimeout(function() {
                 delay = false;
-            }, 250);
+            }, 500);
         } else if(!delay) {
             destination = position - event.deltaY
         }
