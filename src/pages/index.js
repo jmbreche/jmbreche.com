@@ -53,7 +53,7 @@ const IndexPage = () => {
                 proximities.push(Math.abs(((window.innerHeight - el.offsetHeight) / 2 - el.offsetTop) - position))
             }
 
-            distance = Math.min(...proximities)
+            let distance = Math.min(...proximities)
         
             if(distance > 50)
                 current_section = proximities.indexOf(distance)
