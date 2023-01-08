@@ -36,6 +36,7 @@ const IndexPage = () => {
             destination = ((window.innerHeight - sections[current_section].offsetHeight) / 2 - sections[current_section].offsetTop)
 
             window.removeEventListener("wheel", wheel)
+            clearTimeout(scrolling_timer)
             
             setTimeout(function() {
                 window.addEventListener("wheel", wheel)
