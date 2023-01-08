@@ -20,8 +20,6 @@ const IndexPage = () => {
     var scrolling_timer
 
     function wheel(event) {
-        window.removeEventListener("wheel", wheel)
-
         if(Math.abs(event.deltaY) > 30) {
             if(event.deltaY < 0) {
                 current_section--
@@ -36,13 +34,14 @@ const IndexPage = () => {
             }
 
             destination = ((window.innerHeight - sections[current_section].offsetHeight) / 2 - sections[current_section].offsetTop)
+
+            window.removeEventListener("wheel", wheel)
+            clearTimeout(scrolling_timer)
             
             setTimeout(function() {
                 window.addEventListener("wheel", wheel)
             }, 500);
         } else {
-            window.addEventListener("wheel", wheel)
-            
             destination = position - event.deltaY
         }
 
