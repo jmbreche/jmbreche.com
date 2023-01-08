@@ -4,9 +4,13 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "./index.module.scss"
 
 import me_img from "../images/Me.png"
+import cs_img from "../images/CareShare.svg"
+import dcb_img from "../images/DoCollegeBetter.png"
+import uofa_img from "../images/UofA.png"
 
 import Banner from "../components/banner"
 import Slant from "../components/slant"
+import Triad from "../components/triad"
 
 const IndexPage = () => {
     var sections
@@ -64,8 +68,26 @@ const IndexPage = () => {
     return (
         <main>
             <Banner intro="Hi, I am" name="Jacob Brecheisen" subtitle="Data Analyst" img={ me_img }/>
-            <Slant title="What I've Tested" subtitle="University of Testing" img="CareShare.svg">This is some test text.</Slant>
             <Slant title="Education" subtitle="University of Arkansas" img="UofA.png" flip="true">This is text about how cool the university of arkansas is.</Slant>
+           
+            <Triad title="Experience">
+                <div>
+                    <p>Software Developer<br/><small>CareShare</small></p>
+                    <img src={ cs_img } alt={ cs_img }/>
+                </div> 
+
+                <div>
+                    <p>Data Engineer<br/><small>University of Arkansas</small></p>
+                    <img src={ uofa_img } alt={ uofa_img }/>
+                </div> 
+
+                <div>
+                    <p>Tutor<br/><small>Do College Better</small></p>
+                    <img src={ dcb_img } alt={ dcb_img }/>
+                </div> 
+            </Triad>
+
+            <Slant title="What I've Tested" subtitle="Check out these skills" img="Code.png">This is some test text.</Slant>
         </main>
     )
 }

@@ -1,0 +1,50 @@
+.outer {
+    padding: 8em 0;
+    width: 100vw;
+    color: #22395d;
+    text-align: center;
+
+    h2 {
+        font-size: 3.75rem;
+        line-height: 1;
+        margin-bottom: .25em;
+        font-weight: bold;
+
+        width: 100%;
+    }
+
+    section {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        padding: 2em;
+        line-height: 1.15;
+        font-weight: bold;
+    
+        div {
+            padding: 1em;
+
+            p {
+                small {
+                    color: #859199;
+                    font-style: italic;
+                    font-weight: normal;
+                    letter-spacing: .05em;
+                }
+            }
+
+            img {
+                width: min(250px, 25vw);
+                height: min(250px, 25vw);
+                background: #EEEEEA;
+                padding: 1em;
+                box-shadow: 0.1em 0.1em 0.5em rgba(0, 0, 0, .25), 0.05em 0.05em 0.1em rgba(0, 0, 0, 0.125);
+                transition: transform .3s;
+            }
+
+            img:hover {
+                transform: scale(1.1);
+                cursor: pointer;
+            }
+        }
+    }
+}
