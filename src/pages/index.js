@@ -42,7 +42,7 @@ const IndexPage = () => {
             
             setTimeout(function() {
                 delay = false;
-            }, 500);
+            }, 250);
         } else {
             destination = position - event.deltaY
         }
@@ -53,7 +53,7 @@ const IndexPage = () => {
             let proximities = []
     
             for(let el of sections) {
-                proximities.push(Math.abs(((window.innerHeight - sections[current_section].offsetHeight) / 2 - sections[current_section].offsetTop) - position))
+                proximities.push(Math.abs(((window.innerHeight - el.offsetHeight) / 2 - el.offsetTop) - position))
             }
     
             current_section = proximities.indexOf(Math.min(...proximities))
