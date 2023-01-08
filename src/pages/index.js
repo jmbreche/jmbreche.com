@@ -36,7 +36,6 @@ const IndexPage = () => {
             destination = ((window.innerHeight - sections[current_section].offsetHeight) / 2 - sections[current_section].offsetTop)
 
             window.removeEventListener("wheel", wheel)
-            clearTimeout(scrolling_timer)
             
             setTimeout(function() {
                 window.addEventListener("wheel", wheel)
@@ -54,8 +53,12 @@ const IndexPage = () => {
                 proximities.push(Math.abs(((window.innerHeight - el.offsetHeight) / 2 - el.offsetTop) - position))
             }
     
-            current_section = proximities.indexOf(Math.min(...proximities))
-            destination = ((window.innerHeight - sections[current_section].offsetHeight) / 2 - sections[current_section].offsetTop)
+            let distance = Math.min(...proximities)
+            
+            if(distance > 100) {
+                current_section = proximities.indexOf(distance)
+                destination = ((window.innerHeight - sections[current_section].offsetHeight) / 2 - sections[current_section].offsetTop)
+            }
         }, 750)
     }
 
