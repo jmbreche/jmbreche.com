@@ -1,11 +1,11 @@
 .outer {
-    padding: calc(50vh - 125px) 0;
+    padding: 0;
     width: 100vw;
 
     section {
         min-width: 500px;
         position: relative;
-        padding: 25vh 2em;
+        padding: calc(50vh - 125px) 2em 50vh 2em;
         display: grid;
         width: min-content;
         margin: 0 auto;
