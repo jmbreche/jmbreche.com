@@ -42,6 +42,8 @@ const IndexPage = () => {
             setTimeout(function() {
                 delay = false;
             }, 500);
+        } else {
+            destination = position + event.deltaY
         }
     }
 
