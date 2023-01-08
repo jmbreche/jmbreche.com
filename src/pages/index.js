@@ -18,6 +18,7 @@ const IndexPage = () => {
     var position
     var destination
     var delay
+    var scrolling_timer
 
     function wheel(event) {
         if(Math.abs(event.deltaY) > 30) {
@@ -45,17 +46,20 @@ const IndexPage = () => {
         } else {
             destination = position - event.deltaY
         }
-    }
 
-    function touchend() {
-        let proximities = []
+        clearTimeout(scrolling_timer)
 
-        for(let el of sections) {
-            proximities.push(Math.abs(((window.innerHeight - sections[current_section].offsetHeight) / 2 - sections[current_section].offsetTop) - position))
-        }
+        scrolling_timer = setTimeout(function() {
+            let proximities = []
+    
+            for(let el of sections) {
+                proximities.push(Math.abs(((window.innerHeight - sections[current_section].offsetHeight) / 2 - sections[current_section].offsetTop) - position))
+            }
+    
+            current_section = proximities.indexOf(Math.min(...proximities))
 
-        current_section = proximities.indexOf(Math.min(...proximities))
-        destination = ((window.innerHeight - sections[current_section].offsetHeight) / 2 - sections[current_section].offsetTop)
+            console.log("User hasn't scrolled in 250 milliseconds")
+        }, 250)
     }
 
     function update() {
@@ -82,13 +86,11 @@ const IndexPage = () => {
         document.getElementsByTagName("body")[0].style.top = position + "px"
 
         window.addEventListener("wheel", wheel)
-        window.addEventListener("touchend", touchend)
 
         update()
 
         return () => {
           window.removeEventListener("wheel", wheel)
-          window.removeEventListener("touchend", touchend)
         }
     }, [])
 
