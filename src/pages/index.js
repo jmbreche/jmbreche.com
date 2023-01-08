@@ -32,6 +32,8 @@ const IndexPage = () => {
             } else if(current_section > sections.length - 1) {
                 current_section = 0
             }
+
+            destination = ((window.innerHeight - sections[current_section].offsetHeight) / 2 - sections[current_section].offsetTop)
         }
 
         if(event.wheelDeltaY ? event.wheelDeltaY === -3 * event.deltaY : event.deltaMode === 0) {
@@ -41,8 +43,6 @@ const IndexPage = () => {
                 delay = false;
             }, 2000);
         }
-
-        destination = ((window.innerHeight - sections[current_section].offsetHeight) / 2 - sections[current_section].offsetTop)
     }
 
     function update() {
