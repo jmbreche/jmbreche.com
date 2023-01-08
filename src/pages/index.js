@@ -79,7 +79,6 @@ const IndexPage = () => {
         destination = position
         sections = document.getElementsByTagName("main")[0].children
         current_section = 0
-        delay = false
 
         document.getElementsByTagName("body")[0].style.top = position + "px"
 
