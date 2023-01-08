@@ -17,18 +17,29 @@ const IndexPage = () => {
     var current_section
     var position
     var destination
+    var delay
 
     function wheel(event) {
-        if(event.deltaY < 0) {
-            current_section--
-        } else if(event.deltaY > 0) {
-            current_section++
+        if(!delay) {
+            if(event.deltaY < 0) {
+                current_section--
+            } else if(event.deltaY > 0) {
+                current_section++
+            }
+
+            if(current_section < 0) {
+                current_section = sections.length - 1
+            } else if(current_section > sections.length - 1) {
+                current_section = 0
+            }
         }
 
-        if(current_section < 0) {
-            current_section = sections.length - 1
-        } else if(current_section > sections.length - 1) {
-            current_section = 0
+        if(event.wheelDeltaY ? event.wheelDeltaY === -3 * event.deltaY : event.deltaMode === 0) {
+            delay = true;
+            
+            setTimeout(function() {
+                delay = false;
+            }, 500);
         }
 
         destination = ((window.innerHeight - sections[current_section].offsetHeight) / 2 - sections[current_section].offsetTop)
@@ -53,6 +64,7 @@ const IndexPage = () => {
         destination = position
         sections = document.getElementsByTagName("main")[0].children
         current_section = 0
+        delay = false
 
         document.getElementsByTagName("body")[0].style.top = position + "px"
 
