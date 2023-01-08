@@ -57,6 +57,7 @@ const IndexPage = () => {
             let distance = Math.min(...proximities)
             
             if(distance > 100) {
+                console.log("moving")
                 current_section = proximities.indexOf(distance)
                 destination = ((window.innerHeight - sections[current_section].offsetHeight) / 2 - sections[current_section].offsetTop)
             }
