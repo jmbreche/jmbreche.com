@@ -18,6 +18,7 @@ const IndexPage = () => {
     var position
     var destination
     var scrolling_timer
+    var small_scroll
 
     function wheel(event) {
         if(Math.abs(event.deltaY) > 30) {
@@ -40,8 +41,14 @@ const IndexPage = () => {
             
             setTimeout(function() {
                 window.addEventListener("wheel", wheel)
-            }, 400);
-        } else {
+            }, 250);
+            
+            small_scroll = false
+
+            setTimeout(function() {
+                small_scroll = true
+            }, 800);
+        } else if(small_scroll) {
             destination = position - event.deltaY
         }
 
@@ -56,7 +63,7 @@ const IndexPage = () => {
     
             current_section = proximities.indexOf(Math.min(...proximities))
             destination = ((window.innerHeight - sections[current_section].offsetHeight) / 2 - sections[current_section].offsetTop)
-        }, 350)
+        }, 750)
     }
 
     function update() {
@@ -79,6 +86,7 @@ const IndexPage = () => {
         position = 0
         destination = 0
         current_section = 0
+        small_scroll = false
 
         window.addEventListener("wheel", wheel)
 
