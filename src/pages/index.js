@@ -52,11 +52,12 @@ const IndexPage = () => {
             for(let el of sections) {
                 proximities.push(Math.abs(((window.innerHeight - el.offsetHeight) / 2 - el.offsetTop) - position))
             }
-    
-            current_section = proximities.indexOf(Math.min(...proximities))
-            destination = ((window.innerHeight - sections[current_section].offsetHeight) / 2 - sections[current_section].offsetTop)
 
-            console.log("User hasn't scrolled in 250 milliseconds")
+            distance = Math.min(...proximities)
+        
+            if(distance > 50)
+                current_section = proximities.indexOf(distance)
+                destination = ((window.innerHeight - sections[current_section].offsetHeight) / 2 - sections[current_section].offsetTop)
         }, 250)
     }
 
