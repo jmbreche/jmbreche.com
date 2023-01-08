@@ -20,7 +20,7 @@ const IndexPage = () => {
     var delay
 
     function wheel(event) {
-        if(Math.abs(event.deltaY) > 50) {
+        if(Math.abs(event.deltaY) > 30) {
             if(!delay) {
                 if(event.deltaY < 0) {
                     current_section--
