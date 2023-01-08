@@ -47,7 +47,7 @@ const IndexPage = () => {
 
             setTimeout(function() {
                 small_scroll = true
-            }, 800);
+            }, 25 * event.deltaY + 250);
         } else if(small_scroll) {
             destination = position - event.deltaY
         }
