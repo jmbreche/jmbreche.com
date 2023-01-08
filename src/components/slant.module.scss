@@ -1,0 +1,162 @@
+.left {
+    background: #16252F;
+    color: #E5E4E2;
+    padding: 2em;
+    width: 100vw;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-weight: bold;
+
+    section {
+        width: 100%;
+        position: relative;
+        min-width: 500px;
+        padding: 25vh 2em;
+        border-radius: 1em 0 0 1em;
+        display: inline-block;
+        overflow: hidden;
+
+        *:not(img) {
+            min-width: 400px;
+            width: 40%;
+            position: relative;
+            z-index: 1;
+            display: table;
+            left: 5%;
+        }
+
+        h2 {
+            margin-bottom: .25em;
+            line-height: 1;
+            font-size: 3.75rem;
+            font-weight: bold;
+        }
+
+        p {
+            font-family: "Source Code Pro", monospace;
+            letter-spacing: .1em;
+            font-size: 1.5rem;
+            font-weight: normal;
+        }
+
+        div {
+            position: absolute;
+            background: #E5E4E2;
+            background-position: 45vw 50%;
+            background-size: max(55vw, 105vh) max(55vw, 105vh);
+            background-attachment: fixed;
+            background-position: no-repeat;
+            border-radius: 0 1em 1em 0;
+            width: 95%;
+            height: 99.9%;
+            top: 0;
+            right: 0;
+            z-index: 0;
+        }
+    }
+        
+    section::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 60%;
+        height: 100%;
+        min-width: 700px;
+        background: #22395d;
+        -webkit-transform-origin: 100% 0;
+        -ms-transform-origin: 100% 0;
+        transform-origin: 100% 0;
+        -webkit-transform: skew(-22.5deg);
+        -ms-transform: skew(-22.5deg);
+        transform: skew(-22.5deg);
+        z-index: 0;
+    }
+}
+
+.right {
+    background: #16252F;
+    color: #E5E4E2;
+    padding: 2em;
+    width: 100vw;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-weight: bold;
+    align-items: right;
+
+    section {
+        width: 100%;
+        position: relative;
+        display: table;
+        min-width: 500px;
+        padding: 25vh 2em;
+        border-radius: 0 1em 1em 0;
+        display: inline-block;
+        overflow: hidden;
+        text-align: right;
+
+        *:not(div) {
+            min-width: 400px;
+            width: 40%;
+            position: relative;
+            z-index: 1;
+            display: table;
+            margin-left: auto;
+            right: 5%;
+        }
+
+        h2 {
+            margin-bottom: .25em;
+            line-height: 1;
+            font-size: 3.75rem;
+            font-weight: bold;
+            text-align: right;
+        }
+
+        p {
+            font-family: "Source Code Pro", monospace;
+            letter-spacing: .1em;
+            font-weight: normal;
+            z-index: 1;
+            font-size: 1.5rem;
+            text-align: right;
+        }
+
+        div {
+            position: absolute;
+            background: #E5E4E2;
+            background-position: 0 50%;
+            background-size: max(55vw, 105vh) max(55vw, 105vh);
+            background-attachment: fixed;
+            background-position: no-repeat;
+            border-radius: 1em 0 0 1em;
+            width: 95%;
+            height: 99.9%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+    }
+        
+    section::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 700px;
+        width: 60%;
+        height: 100%;
+        background: #22395d;
+        -webkit-transform-origin: 100% 0;
+        -ms-transform-origin: 100% 0;
+        transform-origin: 100% 0;
+        -webkit-transform: skew(22.5deg);
+        -ms-transform: skew(22.5deg);
+        transform: skew(22.5deg);
+        z-index: 0;
+    }
+}
