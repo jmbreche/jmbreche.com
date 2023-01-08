@@ -43,7 +43,7 @@ const IndexPage = () => {
                 delay = false;
             }, 500);
         } else {
-            destination = position + event.deltaY
+            destination = position - event.deltaY
         }
     }
 
