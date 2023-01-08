@@ -41,7 +41,7 @@ const IndexPage = () => {
             
             setTimeout(function() {
                 window.addEventListener("wheel", wheel)
-            }, 250);
+            }, 50);
             
             small_scroll = false
 
