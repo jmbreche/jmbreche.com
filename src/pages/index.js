@@ -39,7 +39,7 @@ const IndexPage = () => {
             
             setTimeout(function() {
                 delay = false;
-            }, 500);
+            }, 2000);
         }
 
         destination = ((window.innerHeight - sections[current_section].offsetHeight) / 2 - sections[current_section].offsetTop)
