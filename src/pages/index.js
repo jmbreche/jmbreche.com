@@ -17,9 +17,12 @@ const IndexPage = () => {
     var current
     var position
     var destination
+    var adjust
 
     function wheel(event) {
-        let min_distance = 125
+        clearTimeout(adjust)
+
+        let min_distance = 150
 
         destination = destination - event.deltaY
 
@@ -28,6 +31,10 @@ const IndexPage = () => {
         } else if(event.deltaY < 0 && destination > sections[current] + min_distance) {
             current = (current == 0) ? sections.length - 1 : current - 1
         } else {
+            adjust = setTimeout(function() {
+                destination = sections[current]
+            }, 750)
+
             return
         }
 
