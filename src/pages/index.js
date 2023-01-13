@@ -13,8 +13,7 @@ import Slant from "../components/slant"
 import Triad from "../components/triad"
 
 const IndexPage = () => {
-    var top
-    var bottom
+    var sections
     var current
     var position
     var destination
@@ -24,22 +23,35 @@ const IndexPage = () => {
         clearTimeout(adjust)
 
         let min_distance = 250
-
         destination = destination - event.deltaY
 
-        if(event.deltaY > 0 && (event.deltaY > 125 || destination < top[current] - min_distance)) {
-            current = (current == top.length - 1) ? 0 : current + 1
-        } else if(event.deltaY < 0 && (event.deltaY < -125 || destination > bottom[current] + min_distance)) {
-            current = (current == 0) ? bottom.length - 1 : current - 1
+        if(event.deltaY > 0 && (event.deltaY > 125 || destination < sections[current] - min_distance)) {
+            current = (current == sections.length - 1) ? 0 : current + 1
+
+            window.removeEventListener("wheel", wheel)
+        } else if(event.deltaY < 0 && (event.deltaY < -125 || destination > sections[current] + min_distance)) {
+            current = (current == 0) ? sections.length - 1 : current - 1
+
+            console.log("\n\n")
+            console.log("original dest: " + (destination + event.deltaY))
+            console.log("new dest: " + destination)
+            console.log("section pos: " + sections[current])
+            console.log("thresh: " + (sections[current] + min_distance))
+
+            window.removeEventListener("wheel", wheel)
         } else {
             adjust = setTimeout(function() {
-                destination = top[current]
-            }, 750)
+                destination = sections[current]
+            }, 1000)
 
             return
         }
 
-        destination = top[current]
+        destination = sections[current]
+
+        setTimeout(function() {
+            window.addEventListener("wheel", wheel)
+        }, 250)
     }
 
     function update() {
@@ -57,8 +69,7 @@ const IndexPage = () => {
     }
 
     React.useEffect(() => {
-        top = Array.from(document.getElementsByTagName("main")[0].children).map(el => (window.innerHeight - el.offsetHeight) / 2 - el.offsetTop)
-        bottom = Array.from(document.getElementsByTagName("main")[0].children).map(el => (el.offsetHeight + window.innerHeight) / -2 - el.offsetTop)
+        sections = Array.from(document.getElementsByTagName("main")[0].children).map(el => (window.innerHeight - el.offsetHeight) / 2 - el.offsetTop)
 
         current = 0
         position = 0
