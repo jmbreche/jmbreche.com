@@ -24,7 +24,7 @@ const IndexPage = () => {
 
         let min_distance = 250
 
-        destination = destination - event.deltaY / 2
+        destination = destination - event.deltaY
 
         if(event.deltaY > 0 && (event.deltaY > 125 || destination < sections[current] - min_distance)) {
             current = (current == sections.length - 1) ? 0 : current + 1
