@@ -22,9 +22,9 @@ const IndexPage = () => {
     function wheel(event) {
         clearTimeout(adjust)
 
-        let min_distance = 150
+        let min_distance = 250
 
-        destination = destination - event.deltaY
+        destination = destination - event.deltaY / 2
 
         if(event.deltaY > 0 && destination < sections[current] - min_distance) {
             current = (current == sections.length - 1) ? 0 : current + 1
