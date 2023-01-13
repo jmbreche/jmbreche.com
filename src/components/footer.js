@@ -8,7 +8,9 @@ function Footer({ title, children }) {
             <h2>{ title }</h2>
 
             <section>
-                <table>{ children }</table>
+                <table>
+                    <tbody>{ children }</tbody>
+                </table>
             </section>
         </div>
     )

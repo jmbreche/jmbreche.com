@@ -24,17 +24,17 @@ const IndexPage = () => {
     var sections
     var adjust
 
-    function wheel(event) {
+    function scroll(amount) {
         clearTimeout(adjust)
 
         let min_distance = 250
-        destination = destination - event.deltaY
+        destination = destination - amount
 
-        if(event.deltaY > 0 && (event.deltaY > 125 || destination < sections[current] - min_distance)) {
+        if(amount > 0 && (amount > 125 || destination < sections[current] - min_distance)) {
             current = (current == sections.length - 1) ? 0 : current + 1
 
             window.removeEventListener("wheel", wheel)
-        } else if(event.deltaY < 0 && (event.deltaY < -125 || destination > sections[current] + min_distance)) {
+        } else if(amount < 0 && (amount < -125 || destination > sections[current] + min_distance)) {
             current = (current == 0) ? sections.length - 1 : current - 1
 
             window.removeEventListener("wheel", wheel)
@@ -51,6 +51,20 @@ const IndexPage = () => {
         setTimeout(function() {
             window.addEventListener("wheel", wheel)
         }, 250)
+    }
+
+    function wheel(event) {
+        scroll(event.deltaY)
+    }
+
+    function keydown(event) {
+
+        console.log(event.keyCode)
+        if(event.keyCode == 38) {
+            scroll(-150)
+        } else if(event.keyCode == 32 || event.keyCode == 40) {
+            scroll(150)
+        }
     }
 
     function update() {
@@ -71,11 +85,13 @@ const IndexPage = () => {
         sections = Array.from(document.getElementsByTagName("main")[0].children).map(el => (window.innerHeight - el.offsetHeight) / 2 - el.offsetTop)
 
         window.addEventListener("wheel", wheel)
+        window.addEventListener("keydown", keydown)
 
         update()
 
         return () => {
           window.removeEventListener("wheel", wheel)
+          window.removeEventListener("keydown", keydown)
           update = undefined
         }
     }, [])
@@ -109,27 +125,27 @@ const IndexPage = () => {
             <Footer title="Extra Links">
                 <tr>
                     <td>Personal Email:</td>
-                    <td><Link href="mailto:brecheisen.jacob@gmail.com">brecheisen.jacob@gmail.com</Link></td>
+                    <td><Link to="mailto:brecheisen.jacob@gmail.com">brecheisen.jacob@gmail.com</Link></td>
                 </tr>
                 
                 <tr>
                     <td>School Email:</td>
-                    <td><Link href="mailto:jmbreche@uark.edu">jmbreche@uark.edu</Link></td>
+                    <td><Link to="mailto:jmbreche@uark.edu">jmbreche@uark.edu</Link></td>
                 </tr>
                 
                 <tr>
                     <td>Linkedin:</td>
-                    <td><Link href="www.linkedin.com/in/jmbreche">linkedin.com/in/jmbreche</Link></td>
+                    <td><a href="https://www.linkedin.com/in/jmbreche">linkedin.com/in/jmbreche</a></td>
                 </tr>
                 
                 <tr>
                     <td>Phone:</td>
-                    <td><Link href="tel:9033066315">(903) 306-6315</Link></td>
+                    <td><Link to="tel:9033066315">(903) 306-6315</Link></td>
                 </tr>
 
                 <tr>
                     <td>Resume:</td>
-                    <td><Link href="/static/resume.pdf" target="_blank">resume.pdf</Link></td>
+                    <td><a href="/static/resume.pdf" target="_blank">resume.pdf</a></td>
                 </tr>
             </Footer>
         </main>
