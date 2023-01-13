@@ -14,56 +14,24 @@ import Triad from "../components/triad"
 
 const IndexPage = () => {
     var sections
-    var current_section
+    var current
     var position
     var destination
-    var scrolling_timer
-    var small_scroll
 
     function wheel(event) {
-        if(Math.abs(event.deltaY) > 30) {
-            if(event.deltaY < 0) {
-                current_section--
-            } else if(event.deltaY > 0) {
-                current_section++
-            }
+        let min_distance = 125
 
-            if(current_section < 0) {
-                current_section = sections.length - 1
-            } else if(current_section > sections.length - 1) {
-                current_section = 0
-            }
+        destination = position - event.deltaY
 
-            destination = ((window.innerHeight - sections[current_section].offsetHeight) / 2 - sections[current_section].offsetTop)
-
-            window.removeEventListener("wheel", wheel)
-            clearTimeout(scrolling_timer)
-            
-            setTimeout(function() {
-                window.addEventListener("wheel", wheel)
-            }, 250);
-            
-            small_scroll = false
-
-            setTimeout(function() {
-                small_scroll = true
-            }, 25 * event.deltaY + 250);
-        } else if(small_scroll) {
-            destination = position - event.deltaY
+        if(destination < sections[current] - min_distance) {
+            current = (current == sections.length - 1) ? 0 : current + 1
+        } else if(destination > sections[current] + min_distance) {
+            current = (current == 0) ? sections.length - 1 : current - 1
+        } else {
+            return
         }
 
-        clearTimeout(scrolling_timer)
-
-        scrolling_timer = setTimeout(function() {
-            let proximities = []
-    
-            for(let el of sections) {
-                proximities.push(Math.abs(((window.innerHeight - el.offsetHeight) / 2 - el.offsetTop) - position))
-            }
-    
-            current_section = proximities.indexOf(Math.min(...proximities))
-            destination = ((window.innerHeight - sections[current_section].offsetHeight) / 2 - sections[current_section].offsetTop)
-        }, 750)
+        destination = sections[current]
     }
 
     function update() {
@@ -81,12 +49,11 @@ const IndexPage = () => {
     }
 
     React.useEffect(() => {
-        sections = document.getElementsByTagName("main")[0].children
+        sections = Array.from(document.getElementsByTagName("main")[0].children).map(el => (window.innerHeight - el.offsetHeight) / 2 - el.offsetTop)
 
+        current = 0
         position = 0
         destination = 0
-        current_section = 0
-        small_scroll = false
 
         window.addEventListener("wheel", wheel)
 
@@ -94,6 +61,7 @@ const IndexPage = () => {
 
         return () => {
           window.removeEventListener("wheel", wheel)
+          update = undefined
         }
     }, [])
 
