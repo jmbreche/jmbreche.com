@@ -26,9 +26,9 @@ const IndexPage = () => {
 
         destination = destination - event.deltaY / 2
 
-        if(event.deltaY > 0 && destination < sections[current] - min_distance) {
+        if(event.deltaY > 0 && (event.deltaY > 125 || destination < sections[current] - min_distance)) {
             current = (current == sections.length - 1) ? 0 : current + 1
-        } else if(event.deltaY < 0 && destination > sections[current] + min_distance) {
+        } else if(event.deltaY < 0 && (event.deltaY < -125 || destination < sections[current] + min_distance)) {
             current = (current == 0) ? sections.length - 1 : current - 1
         } else {
             adjust = setTimeout(function() {
