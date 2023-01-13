@@ -4,7 +4,7 @@ import { outer } from "./banner.module.scss"
 
 function Banner({ intro, name, subtitle, img }) {
     return (
-        <div id="banner" className={ outer }>
+        <div className={ outer }>
             <section>
                 <h1>{ intro } <strong>{ name }</strong></h1>
 

@@ -1,0 +1,38 @@
+.outer {
+    padding: 8em 0;
+    width: 100vw;
+    color: #22395d;
+    text-align: center;
+
+    h2 {
+        font-size: 3.75rem;
+        line-height: 1;
+        margin-bottom: .25em;
+        font-weight: bold;
+
+        width: 100%;
+    }
+
+    section {
+        padding: 2em;
+        line-height: 2;
+        font-weight: bold;
+        text-align: left;
+    
+        table {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 auto;
+            width: 30rem;
+                
+
+            tr td:last-child {
+                text-align: right;
+
+                a {
+                    color: #5E6F89;
+                }
+            }
+        }
+    }
+}

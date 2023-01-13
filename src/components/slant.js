@@ -1,12 +1,11 @@
 import * as React from "react"
 
-import { left } from "./slant.module.scss"
-import { right } from "./slant.module.scss"
+import { outer } from "./slant.module.scss"
 
-const Slant = ({ title, subtitle, img, flip, children }) => {
+const Slant = ({ title, subtitle, img, pos, children }) => {
     return (
-        <div className={ flip ? right : left }>
-            <section>
+        <div className={ outer }>
+            <section position={ pos ? pos : "left" }>
                 <h2>{ title }</h2>
                 <p>{ subtitle }</p>
                 <span>{ children }</span>
