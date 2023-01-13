@@ -13,7 +13,8 @@ import Slant from "../components/slant"
 import Triad from "../components/triad"
 
 const IndexPage = () => {
-    var sections
+    var top
+    var bottom
     var current
     var position
     var destination
@@ -26,19 +27,19 @@ const IndexPage = () => {
 
         destination = destination - event.deltaY
 
-        if(event.deltaY > 0 && (event.deltaY > 125 || destination < sections[current] - min_distance)) {
+        if(event.deltaY > 0 && (event.deltaY > 125 || destination < top[current] - min_distance)) {
             current = (current == sections.length - 1) ? 0 : current + 1
-        } else if(event.deltaY < 0 && (event.deltaY < -125 || destination < sections[current] + min_distance)) {
+        } else if(event.deltaY < 0 && (event.deltaY < -125 || destination > bottom[current] + min_distance)) {
             current = (current == 0) ? sections.length - 1 : current - 1
         } else {
             adjust = setTimeout(function() {
-                destination = sections[current]
+                destination = top[current]
             }, 750)
 
             return
         }
 
-        destination = sections[current]
+        destination = top[current]
     }
 
     function update() {
@@ -56,7 +57,8 @@ const IndexPage = () => {
     }
 
     React.useEffect(() => {
-        sections = Array.from(document.getElementsByTagName("main")[0].children).map(el => (window.innerHeight - el.offsetHeight) / 2 - el.offsetTop)
+        top = Array.from(document.getElementsByTagName("main")[0].children).map(el => (window.innerHeight - el.offsetHeight) / 2 - el.offsetTop)
+        bottom = Array.from(document.getElementsByTagName("main")[0].children).map(el => (el.offsetHeight + window.innerHeight) / -2 - el.offsetTop)
 
         current = 0
         position = 0
