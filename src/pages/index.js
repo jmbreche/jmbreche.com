@@ -17,10 +17,10 @@ import Triad from "../components/triad"
 import Footer from "../components/footer"
 
 const IndexPage = () => {
-    var current = new URLSearchParams(window.location.search).get("current_section") || 0
     var position = 0
     var destination = 0
 
+    var current
     var sections
     var adjust
 
@@ -74,6 +74,7 @@ const IndexPage = () => {
     }
 
     React.useEffect(() => {
+        current = new URLSearchParams(window.location.search).get("current_section") || 0
         sections = Array.from(document.getElementsByTagName("main")[0].children).map(el => (window.innerHeight - el.offsetHeight) / 2 - el.offsetTop)
 
         destination = sections[current]
@@ -99,17 +100,17 @@ const IndexPage = () => {
             <Triad title="Experience">
                 <div>
                     <p>Data Engineer<br/><small>University of Arkansas</small></p>
-                    <Link to="experience?current_section=0"><img src={ uofa_img } alt={ uofa_img }/></Link>
+                    <Link to="/experience?current_section=0"><img src={ uofa_img } alt={ uofa_img }/></Link>
                 </div> 
 
                 <div>
                     <p>Software Developer<br/><small>CareShare</small></p>
-                    <Link to="experience?current_section=1"><img src={ cs_img } alt={ cs_img }/></Link>
+                    <Link to="/experience?current_section=2"><img src={ cs_img } alt={ cs_img }/></Link>
                 </div> 
 
                 <div>
                     <p>Tutor<br/><small>Do College Better</small></p>
-                    <Link to="experience?current_section=2"><img src={ dcb_img } alt={ dcb_img }/></Link>
+                    <Link to="/experience?current_section=3"><img src={ dcb_img } alt={ dcb_img }/></Link>
                 </div> 
             </Triad>
 

@@ -6,10 +6,10 @@ import "./experience.module.scss"
 import Blurb from "../components/blurb"
 
 const IndexPage = () => {
-    var current = new URLSearchParams(window.location.search).get("current_section") || 0
     var position = 0
     var destination = 0
 
+    var current
     var sections
 
     function scroll(amount) {
@@ -56,6 +56,7 @@ const IndexPage = () => {
     }
 
     React.useEffect(() => {
+        current = new URLSearchParams(window.location.search).get("current_section") || 0
         sections = Array.from(document.getElementsByTagName("main")[0].children).map(el => Math.max((window.innerHeight - el.offsetHeight) / 2 - el.offsetTop, window.innerHeight / 10 - el.firstChild.offsetTop))
 
         destination = sections[current]
