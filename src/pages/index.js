@@ -17,7 +17,7 @@ import Triad from "../components/triad"
 import Footer from "../components/footer"
 
 const IndexPage = () => {
-    var current = 0
+    var current = new URLSearchParams(window.location.search).get("current_section") || 0
     var position = 0
     var destination = 0
 
@@ -30,27 +30,21 @@ const IndexPage = () => {
         let min_distance = 250
         destination = destination - amount
 
-        if(amount > 0 && (amount > 125 || destination < sections[current] - min_distance)) {
-            current = (current == sections.length - 1) ? 0 : current + 1
+        if(Math.abs(amount) > 125 || destination < sections[current] - min_distance || destination > sections[current] + min_distance) {
+            current = (current + ((amount < 0) ? sections.length - 1 : 1)) % sections.length
+
+            destination = sections[current]
 
             window.removeEventListener("wheel", wheel)
-        } else if(amount < 0 && (amount < -125 || destination > sections[current] + min_distance)) {
-            current = (current == 0) ? sections.length - 1 : current - 1
-
-            window.removeEventListener("wheel", wheel)
+    
+            setTimeout(function() {
+                window.addEventListener("wheel", wheel)
+            }, 250)
         } else {
             adjust = setTimeout(function() {
                 destination = sections[current]
             }, 1000)
-
-            return
         }
-
-        destination = sections[current]
-
-        setTimeout(function() {
-            window.addEventListener("wheel", wheel)
-        }, 250)
     }
 
     function wheel(event) {
@@ -58,8 +52,6 @@ const IndexPage = () => {
     }
 
     function keydown(event) {
-
-        console.log(event.keyCode)
         if(event.keyCode == 38) {
             scroll(-150)
         } else if(event.keyCode == 32 || event.keyCode == 40) {
@@ -84,6 +76,8 @@ const IndexPage = () => {
     React.useEffect(() => {
         sections = Array.from(document.getElementsByTagName("main")[0].children).map(el => (window.innerHeight - el.offsetHeight) / 2 - el.offsetTop)
 
+        destination = sections[current]
+        
         window.addEventListener("wheel", wheel)
         window.addEventListener("keydown", keydown)
 
@@ -104,18 +98,18 @@ const IndexPage = () => {
 
             <Triad title="Experience">
                 <div>
-                    <p>Software Developer<br/><small>CareShare</small></p>
-                    <img src={ cs_img } alt={ cs_img }/>
+                    <p>Data Engineer<br/><small>University of Arkansas</small></p>
+                    <Link to="experience?current_section=0"><img src={ uofa_img } alt={ uofa_img }/></Link>
                 </div> 
 
                 <div>
-                    <p>Data Engineer<br/><small>University of Arkansas</small></p>
-                    <img src={ uofa_img } alt={ uofa_img }/>
+                    <p>Software Developer<br/><small>CareShare</small></p>
+                    <Link to="experience?current_section=1"><img src={ cs_img } alt={ cs_img }/></Link>
                 </div> 
 
                 <div>
                     <p>Tutor<br/><small>Do College Better</small></p>
-                    <img src={ dcb_img } alt={ dcb_img }/>
+                    <Link to="experience?current_section=2"><img src={ dcb_img } alt={ dcb_img }/></Link>
                 </div> 
             </Triad>
 
@@ -159,7 +153,7 @@ export const Head = () => (
 
         <link rel="icon" type="image/x-icon" href="static/logo.ico"/>
 
-        <title>Welcome</title>
+        <title>Jacob Brecheisen</title>
     </>
 )
 

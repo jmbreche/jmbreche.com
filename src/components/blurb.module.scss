@@ -1,0 +1,40 @@
+.outer {
+    padding: 50vh 0;
+    width: 100vw;
+    text-align: center;
+
+    h2 {
+        font-size: 3.75rem;
+        line-height: 1;
+        margin-bottom: .25em;
+        font-weight: bold;
+
+        width: 100%;
+    }
+
+    section {
+        padding: 2em;
+        line-height: 1.15;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    
+        div {
+            max-width: 1000px;
+            text-align: justify;
+
+            * {
+                margin-bottom: 2em;
+            }
+        }
+    }
+}
+
+.outer[invert="false"] {
+    color: #22395d;
+}
+
+.outer[invert="true"] {
+    background: #16252F;
+    color: #E5E4E2;
+}
