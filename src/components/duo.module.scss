@@ -1,0 +1,29 @@
+.outer {
+    display: grid;
+    grid-template-columns: auto auto;
+
+    > * {
+        margin: auto 0;
+        padding-left: 1em; 
+        padding-right: 1em; 
+    }
+
+    > div:last-of-type > section {
+        border-radius: 1em;
+        padding: 2em;
+    }
+}
+
+.outer[invert="false"] {
+    > div:last-of-type > section {
+        background: #EEEEEA;
+    }
+}
+
+.outer[invert="true"] {
+    background: #16252F;
+
+    > div:last-of-type > section {
+        background: #22395d;
+    }
+}

@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap");
 
+main {
+    position: relative;
+    z-index: 0;
+}
+
 body {
     position: fixed;
     font-family: "Source Sans Pro", sans-serif;
