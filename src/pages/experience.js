@@ -11,7 +11,7 @@ import Blurb from "../components/blurb"
 import Duo from "../components/duo"
 import Back from "../components/back"
 
-const IndexPage = () => {
+const Experience = () => {
     var position = 0
     var destination = 0
 
@@ -62,7 +62,7 @@ const IndexPage = () => {
     }
 
     React.useEffect(() => {
-        current = new URLSearchParams(window.location.search).get("section") || 0
+        current = parseInt(new URLSearchParams(window.location.search).get("section")) || 0
         sections = Array.from(document.getElementsByTagName("main")[0].children).map(el => (window.innerHeight - el.offsetHeight) / 2 - el.offsetTop)
 
         destination = sections[current]
@@ -152,4 +152,4 @@ export const Head = () => (
     </>
 )
 
-export default IndexPage
+export default Experience

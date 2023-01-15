@@ -16,7 +16,7 @@ import Slant from "../components/slant"
 import Triad from "../components/triad"
 import Footer from "../components/footer"
 
-const IndexPage = () => {
+const Index = () => {
     var position = 0
     var destination = 0
 
@@ -74,12 +74,12 @@ const IndexPage = () => {
     }
 
     React.useEffect(() => {
-        current = new URLSearchParams(window.location.search).get("section") || 0
+        current = parseInt(new URLSearchParams(window.location.search).get("section")) || 0
         sections = Array.from(document.getElementsByTagName("main")[0].children).map(el => (window.innerHeight - el.offsetHeight) / 2 - el.offsetTop)
 
         destination = sections[current]
         position = sections[current]
-        
+
         window.addEventListener("wheel", wheel)
         window.addEventListener("keydown", keydown)
 
@@ -115,7 +115,7 @@ const IndexPage = () => {
                 </div> 
             </Triad>
 
-            <Slant title="Education" subtitle="University of Arkansas" img="UofA.png">This is text about how cool the university of arkansas is.</Slant>
+            <Slant to="/education" title="Education" subtitle="University of Arkansas" img="UofA.png">This is text about how cool the university of arkansas is.</Slant>
             <Slant title="What I've Tested" subtitle="Check out these skills" img="Code.png" pos="right">This is some test text.</Slant>
 
             <Footer title="Extra Links">
@@ -159,4 +159,4 @@ export const Head = () => (
     </>
 )
 
-export default IndexPage
+export default Index

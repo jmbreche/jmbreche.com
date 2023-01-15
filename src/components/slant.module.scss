@@ -1,121 +1,178 @@
 .outer {
     background: #16252F;
-    color: #E5E4E2;
     padding: 2em;
     width: 100vw;
     font-weight: bold;
 
-    section {
-        width: 100%;
-        position: relative;
-        min-width: 500px;
-        padding: 25vh 2em;
-        border-radius: 1em 0 0 1em;
-        display: inline-block;
-        overflow: hidden;
-
-        *:not(img) {
-            min-width: 400px;
-            width: 40%;
+    a {
+        section {
+            color: #E5E4E2;
+            width: 100%;
             position: relative;
-            z-index: 1;
-            display: table;
+            min-width: 500px;
+            padding: 25vh 2em;
+            border-radius: 1em 0 0 1em;
+            display: inline-block;
+            overflow: hidden;
+
+            h2, p, span {
+                min-width: 400px;
+                width: 40%;
+                position: relative;
+                z-index: 1;
+                display: table;
+            }
+
+            h2 {
+                margin-bottom: .25em;
+                line-height: 1;
+                font-size: 3.75rem;
+                font-weight: bold;
+            }
+
+            p {
+                font-family: "Source Code Pro", monospace;
+                letter-spacing: .1em;
+                font-size: 1.5rem;
+                font-weight: normal;
+            }
+
+            div {
+                position: absolute;
+                background: #E5E4E2;
+                background-size: max(60vw, 100vh) max(60vw, 100vh);
+                background-attachment: fixed;
+                background-repeat: no-repeat;
+                width: 95%;
+                height: 99.9%;
+                top: 0;
+                z-index: 0;
+                transition: all .25s;
+            }
+
+            svg {
+                position: absolute;
+                color: #E5E4E2;
+                z-index: 1;
+                top: 50%;
+                transform: translateY(-50%);
+                transition: all .25s;
+            }
+
+            svg:nth-of-type(1) {
+                right: 2em;
+            }
+
+            svg:nth-of-type(2) {
+                right: 2em;
+                opacity: 0;
+            }
+
+            svg:nth-of-type(3) {
+                left: 2em;
+            }
+
+            svg:nth-of-type(4) {
+                left: 2em;
+                opacity: 0;
+            }
         }
 
-        h2 {
-            margin-bottom: .25em;
-            line-height: 1;
-            font-size: 3.75rem;
-            font-weight: bold;
+        section:hover {
+            cursor: pointer;
+
+            div {
+                filter: blur(5px);
+                top: 1%;
+                height: 98%;
+            }
+
+            svg:nth-of-type(2) {
+                right: 1.5em;
+                opacity: 1;
+            }
+
+            svg:nth-of-type(4) {
+                left: 1.5em;
+                opacity: 1;
+            }
+
+            svg:nth-of-type(2n + 1) {
+                opacity: 0;
+            }
         }
 
-        p {
-            font-family: "Source Code Pro", monospace;
-            letter-spacing: .1em;
-            font-size: 1.5rem;
-            font-weight: normal;
-        }
-
-        div {
+        section::after {
+            content: "";
             position: absolute;
-            background: #E5E4E2;
-            background-position: 45vw 50%;
-            background-size: max(55vw, 105vh) max(55vw, 105vh);
-            background-attachment: fixed;
-            background-position: no-repeat;
-            border-radius: 0 1em 1em 0;
-            width: 95%;
-            height: 99.9%;
             top: 0;
-            right: 0;
+            width: 60%;
+            height: 100%;
+            min-width: 700px;
+            background: #22395d;
+            -webkit-transform-origin: 100% 0;
+            -ms-transform-origin: 100% 0;
+            transform-origin: 100% 0;
             z-index: 0;
         }
-    }
 
-    section::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        width: 60%;
-        height: 100%;
-        min-width: 700px;
-        background: #22395d;
-        -webkit-transform-origin: 100% 0;
-        -ms-transform-origin: 100% 0;
-        transform-origin: 100% 0;
-        z-index: 0;
-    }
-
-    section[position="left"] {
-        border-radius: 1em 0 0 1em;
-
-        *:not(img) {
-            left: 5%;
-        }
-
-        div {
-            background-position: 45vw 50%;
-            border-radius: 0 1em 1em 0;
-            right: 0;
-        }
-    }
-        
-    section[position="left"]::after {
-        left: 0;
-        -webkit-transform: skew(-22.5deg);
-        -ms-transform: skew(-22.5deg);
-        transform: skew(-22.5deg);
-    }
-
-    section[position="right"] {
-        border-radius: 0 1em 1em 0;
-        text-align: right;
-
-        *:not(div) {
-            margin-left: auto;
-            right: 5%;
-        }
-
-        h2 {
-            text-align: right;
-        }
-
-        p {
-            z-index: 1;
-            text-align: right;
-        }
-
-        div {
-            background-position: 0 50%;
+        section[position="left"] {
             border-radius: 1em 0 0 1em;
-            left: 0;
+
+            h2, p, span {
+                left: 5%;
+            }
+
+            div {
+                background-position: right;
+                right: 0;
+            }
+
+            svg:nth-of-type(3), svg:nth-of-type(4) {
+                visibility: hidden;
+            }
         }
-    }
-        
-    section[position="right"]::after {
-        right: 0;
-        -webkit-transform: skew(22.5deg);
-        -ms-transform: skew(22.5deg);
-        transform: skew(22.5deg);
+            
+        section[position="left"]::after {
+            left: 0;
+            -webkit-transform: skew(-22.5deg);
+            -ms-transform: skew(-22.5deg);
+            transform: skew(-22.5deg);
+        }
+
+        section[position="right"] {
+            border-radius: 0 1em 1em 0;
+            text-align: right;
+
+            h2, p, span {
+                margin-left: auto;
+                right: 5%;
+            }
+
+            h2 {
+                text-align: right;
+            }
+
+            p {
+                z-index: 1;
+                text-align: right;
+            }
+
+            div {
+                background-position: left;
+                left: 0;
+            }
+
+            svg:nth-of-type(1), svg:nth-of-type(2) {
+                visibility: hidden;
+            }
+        }
+            
+        section[position="right"]::after {
+            right: 0;
+            -webkit-transform: skew(22.5deg);
+            -ms-transform: skew(22.5deg);
+            transform: skew(22.5deg);
+        }
     }
 }

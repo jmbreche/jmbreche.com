@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap");
+
+body {
+    position: fixed;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 1.125rem;
+    background: #E5E4E2;
+    color: #16252F;
+    margin: 0;
+    line-height: 1.6;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
