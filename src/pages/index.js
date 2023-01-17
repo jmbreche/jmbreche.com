@@ -85,7 +85,6 @@ const Index = () => {
         sections = Array.from(document.getElementsByTagName("main")[0].children).map(el => (window.innerHeight - el.offsetHeight) / 2 - el.offsetTop)
 
         destination = sections[current]
-        position = sections[current]
 
         window.addEventListener("wheel", wheel)
         window.addEventListener("keydown", keydown)
