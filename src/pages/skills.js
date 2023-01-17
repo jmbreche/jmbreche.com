@@ -76,6 +76,10 @@ const Skills = () => {
 
         update()
 
+        setTimeout(function() {
+            document.getElementsByTagName("body")[0].style.visibility = "visible"
+        }, 50)
+
         return () => {
           window.removeEventListener("wheel", wheel)
           window.removeEventListener("keydown", keydown)
