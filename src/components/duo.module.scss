@@ -4,14 +4,21 @@
     grid-template-columns: auto auto;
 
     > * {
+        width: 50vw;
         margin: auto 0;
-        padding-left: 1em; 
+        padding-left: 3em; 
         padding-right: 1em; 
     }
+    
+    > div:last-of-type {
+        padding-left: 2em; 
+        padding-right: 4em;
 
-    > div:last-of-type > section {
-        border-radius: 1em;
-        padding: 2em;
+        > section {
+            border-radius: 1em;
+            background: #22395d;
+            padding: 2em;
+        }
     }
 }
 

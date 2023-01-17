@@ -40,11 +40,18 @@ const Experience = () => {
     }
 
     function keydown(event) {
-        if(event.keyCode == 38) {
+        if(event.keyCode === 38) {
             scroll(-150)
-        } else if(event.keyCode == 32 || event.keyCode == 40) {
+        } else if(event.keyCode === 32 || event.keyCode === 40) {
             scroll(150)
         }
+    }
+
+    function resize() {
+        sections = Array.from(document.getElementsByTagName("main")[0].children).map(el => (window.innerHeight - el.offsetHeight) / 2 - el.offsetTop)
+
+        destination = sections[current]
+        position = sections[current]
     }
 
     function update() {
@@ -70,12 +77,14 @@ const Experience = () => {
 
         window.addEventListener("wheel", wheel)
         window.addEventListener("keydown", keydown)
+        window.addEventListener("resize", resize)
 
         update()
 
         return () => {
           window.removeEventListener("wheel", wheel)
           window.removeEventListener("keydown", keydown)
+          window.removeEventListener("resize", resize)
           update = undefined
         }
     }, [])

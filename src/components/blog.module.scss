@@ -13,7 +13,6 @@
         min-width: 500px;
         padding: 25vh 2em;
         border-radius: 1em;
-        display: inline-block;
         overflow: hidden;
         background: #22395d;
         z-index: 0;
@@ -21,9 +20,7 @@
         h2 {
             position: relative;
             background: rgba(34, 57, 93, .5);
-            margin-bottom: .25em;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: .5em;
             line-height: 1;
             font-size: 3.75rem;
             border-radius: .5rem;
@@ -31,21 +28,8 @@
             display: table;
             padding: .1rem 2rem;
             z-index: 3;
-        }
-
-        p {
-            position: relative;
-            font-family: "Source Code Pro", monospace;
-            letter-spacing: .1em;
-            margin-left: auto;
-            margin-right: auto;
-            font-size: 1.5rem;
-            font-weight: normal;
-            background: rgba(34, 57, 93, .5);
-            border-radius: .5rem;
-            display: table;
-            padding: .1rem 2rem;
-            z-index: 3;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         div {
@@ -61,6 +45,15 @@
             box-shadow: 0 0 50px 50px #203554;
             z-index: 2;
             opacity: 0;
+        }
+
+        p {
+            position: relative;
+            width: 80%;
+            max-width: 1000px;
+            text-align: justify;
+            left: 50%;
+            transform: translateX(-50%);
         }
     }
 

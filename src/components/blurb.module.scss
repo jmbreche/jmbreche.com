@@ -42,6 +42,33 @@
                 margin-top: .5em;
                 margin-bottom: .5em;
             }
+
+            table {
+                font-size: .8rem;
+                border-collapse: separate;
+                border-spacing: 4em .5em;
+
+                tbody tr {
+                    td:first-child {
+                        text-align: left;
+                        font-weight: bold;
+                    }
+
+                    td:last-child {
+                        text-align: right;
+                    }
+
+                    td:only-child {
+                        text-align: center;
+                    }
+                }
+            }
+
+            ul {
+                padding-left: 0;
+                text-align: center;
+                list-style-type: none;
+            }
         }
     }
 }

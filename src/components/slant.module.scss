@@ -15,7 +15,7 @@
             display: inline-block;
             overflow: hidden;
 
-            h2, p, span {
+            h2, p {
                 min-width: 400px;
                 width: 40%;
                 position: relative;
@@ -119,7 +119,7 @@
         section[position="left"] {
             border-radius: 1em 0 0 1em;
 
-            h2, p, span {
+            h2, p {
                 left: 5%;
             }
 
@@ -144,7 +144,7 @@
             border-radius: 0 1em 1em 0;
             text-align: right;
 
-            h2, p, span {
+            h2, p {
                 margin-left: auto;
                 right: 5%;
             }

@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { outer } from "./blog.module.scss"
 
-const Blog = ({ title, subtitle, img, pos, children }) => {
+const Blog = ({ title, img, pos, children }) => {
     var unfocus
 
     function mousemove(event) {
@@ -40,11 +40,10 @@ const Blog = ({ title, subtitle, img, pos, children }) => {
         <div className={ outer }>
             <section position={ pos ? pos : "left" }>
                 <h2>{ title }</h2>
-                <p>{ subtitle }</p>
 
                 <div id="circle" style={{ backgroundImage: `url("/images/` + img + `")`, top: 0, left: 0 }}></div>
-                
-                <span>{ children }</span>
+
+                <p>{ children }</p>
             </section>
         </div>
     )

@@ -4,14 +4,13 @@ import { Link } from "gatsby"
 
 import { outer } from "./slant.module.scss"
 
-const Slant = ({ title, subtitle, img, pos, to, children }) => {
+const Slant = ({ title, subtitle, img, pos, to }) => {
     return (
         <div className={ outer }>
             <Link to={ to }>
                 <section position={ pos ? pos : "left" }>
                     <h2>{ title }</h2>
                     <p>{ subtitle }</p>
-                    <span>{ children }</span>
 
                     <div style={{ backgroundImage: `url("/images/` + img + `")` }}/>
 

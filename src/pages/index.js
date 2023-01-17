@@ -52,11 +52,18 @@ const Index = () => {
     }
 
     function keydown(event) {
-        if(event.keyCode == 38) {
+        if(event.keyCode === 38) {
             scroll(-150)
-        } else if(event.keyCode == 32 || event.keyCode == 40) {
+        } else if(event.keyCode === 32 || event.keyCode === 40) {
             scroll(150)
         }
+    }
+
+    function resize() {
+        sections = Array.from(document.getElementsByTagName("main")[0].children).map(el => (window.innerHeight - el.offsetHeight) / 2 - el.offsetTop)
+
+        destination = sections[current]
+        position = sections[current]
     }
 
     function update() {
@@ -82,21 +89,25 @@ const Index = () => {
 
         window.addEventListener("wheel", wheel)
         window.addEventListener("keydown", keydown)
+        window.addEventListener("resize", resize)
 
         update()
 
         return () => {
           window.removeEventListener("wheel", wheel)
           window.removeEventListener("keydown", keydown)
+          window.removeEventListener("resize", resize)
           update = undefined
         }
     }, [])
 
     return (
         <main>
-            <Banner intro="Hi, I am" name="Jacob Brecheisen" subtitle="Data Analyst" img={ me_img }/>
+            <Banner intro="Hi, I am" name="Jacob Brecheisen" subtitle="Data Scientist" img={ me_img }/>
 
-            <Blog title="Who I am" subtitle="This is my cred" img="Profile.png">This is about my awesomeness.</Blog>
+            <Blog title="Who I am" img="Profile.png">
+                I am passionate about using data and algorithms to solve real-world problems. My background in mathematics and computer science has provided me with a solid foundation in the field, and I am constantly seeking to expand my knowledge and skills through coursework and personal projects. I have experience working with a variety of machine learning techniques, including supervised and unsupervised learning, deep learning, and natural language processing. In my previous projects, I have applied these methods to tasks such as image classification, sentiment analysis, and anomaly detection. In addition to my technical skills, I am also a strong communicator and collaborator, I believe that the ability to clearly explain and present the results of my analysis is just as important as the analysis itself.
+            </Blog>
 
             <Triad title="Experience">
                 <div>
@@ -115,18 +126,18 @@ const Index = () => {
                 </div> 
             </Triad>
 
-            <Slant to="/education" title="Education" subtitle="University of Arkansas" img="UofA.png">This is text about how cool the university of arkansas is.</Slant>
-            <Slant title="What I've Tested" subtitle="Check out these skills" img="Code.png" pos="right">This is some test text.</Slant>
+            <Slant to="/education" title="Education" subtitle="University of Arkansas" img="UofA.png"/>
+            <Slant to="/skills" title="Skills" subtitle="Software/Systems" img="Code.png" pos="right"/>
 
             <Footer title="Extra Links">
                 <tr>
                     <td>Personal Email:</td>
-                    <td><Link to="mailto:brecheisen.jacob@gmail.com">brecheisen.jacob@gmail.com</Link></td>
+                    <td><a href="mailto:brecheisen.jacob@gmail.com">brecheisen.jacob@gmail.com</a></td>
                 </tr>
                 
                 <tr>
                     <td>School Email:</td>
-                    <td><Link to="mailto:jmbreche@uark.edu">jmbreche@uark.edu</Link></td>
+                    <td><a href="mailto:jmbreche@uark.edu">jmbreche@uark.edu</a></td>
                 </tr>
                 
                 <tr>
@@ -136,7 +147,7 @@ const Index = () => {
                 
                 <tr>
                     <td>Phone:</td>
-                    <td><Link to="tel:9033066315">(903) 306-6315</Link></td>
+                    <td><a href="tel:9033066315">(903) 306-6315</a></td>
                 </tr>
 
                 <tr>
